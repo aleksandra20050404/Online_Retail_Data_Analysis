@@ -1,4 +1,4 @@
-# Online Retail Transactions Analysis
+# Online Retail Customer Churn Analysis
 
 ## Table of Content
 - [Project Background](#project-background)
@@ -35,7 +35,7 @@ Data obtained from the UCI Machine Learning Repository (extract in Excel format)
  can be found [here](https://archive.ics.uci.edu/static/public/352/online+retail.zip)
 
 ### Author
-[Aleksandra Vislova] (https://www.linkedin.com/in/aleksandra-vislova-a51ba9297?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app
+[Aleksandra Vislova](https://www.linkedin.com/in/aleksandra-vislova-a51ba9297?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app
 )
 
 # Overview of Findings 
@@ -45,7 +45,8 @@ Data obtained from the UCI Machine Learning Repository (extract in Excel format)
 
 The United Kingdom is the overwhelmingly dominant market, accounting for the vast majority of sales. This suggests a heavy reliance on the UK for revenue, which could pose a risk if market conditions in the UK change.
 
-Market diversification: The United Kingdom is the dominant market, with significantly higher sales compared to other countries. Reduce reliance on the UK market by looking at expansion into other countries, especially as an online retailer can operate globally. 
+Market diversification: The United Kingdom is the dominant market, with significantly higher sales compared to other countries. Reduce reliance on the UK market by looking at expansion into other countries, especially as an online retailer can operate globally.
+
 ![image](https://github.com/user-attachments/assets/12f1951a-0f04-4b52-a1bf-bc24c76bfa9f)
 
 Seasonal Marketing Campaign: Use the "hockey curve" sales trend to plan targeted marketing and promotions for the end of the year. 
@@ -59,7 +60,7 @@ Potential Inventory issues: The low percentages (all under 2%) could imply eithe
 
 Investment in marketing campaigns to pair top products with complementary items (e.g., bundle Regency Cake Stand 3 Tier with Party Bunting for event hosting) will increase average order value. 
 
-### RFM analysis**
+### RFM analysis
 
 RFM Analysis demonstrated  healthy customer value distribution nearly evenly split (Low: 35%, Medium: 29%, High: 29%), indicating diversified revenue streams rather than over-reliance on one segment.
 
@@ -79,13 +80,14 @@ The dataset was loaded from a zipped file containing an Excel file.
 
 ### Step 2: Data Preparation:
 
-####Data Cleansing Assumptions : 
-Some negative Quantity and UnitPrice values ​​have been removed based on error assumptions, which must be confirmed by the database owners.
+### Data Cleansing Assumptions : 
 
-Initial data exploration revealed missing values in 'CustomerID' and 'Description', and negative values in 'Quantity' and 'UnitPrice'.
-Missing 'Description' values were imputed by using the most frequent description for each 'StockCode'.
+- Some negative Quantity and UnitPrice values ​​have been removed based on error assumptions, which must be confirmed by the database owners.
+- Initial data exploration revealed missing values in 'CustomerID' and 'Description', and negative values in 'Quantity' and 'UnitPrice'.
+- Missing 'Description' values were imputed by using the most frequent description for each 'StockCode'.
 Rows with missing 'CustomerID' were dropped, as this column is crucial for customer-level analysis.
-#### Step 3: Feature Engeneering: 
+
+### Step 3: Feature Engeneering: 
 For further analysis, new columns were created:
 A 'TotalPrice' column was created by multiplying 'Quantity' and 'UnitPrice'.
 A 'Month' column was extracted from the 'InvoiceDate' for time-based analysis.
@@ -93,41 +95,40 @@ A 'Month' column was extracted from the 'InvoiceDate' for time-based analysis.
 ### Step 4: Data Analysis
 #### Data Visualization of Monthly Sales, Product-wise Sales, Country-wise Sales:
 
-### **Monthly Sales:** A line plot of monthly sales showed clear seasonality. Sales were lower at the beginning of the year, stabilized in the middle, and peaked significantly in the last quarter, particularly in November. This suggests a strong holiday shopping effect.
-**Product-wise Sales: **A horizontal bar chart of the top 5 products by sales revealed a low concentration of sales in the top products. The highest-selling product accounted for less than 2% of total sales, indicating a broad product catalog with sales spread across many items.
-**Country-wise Sales:** A bar chart of the top 5 countries by sales highlighted the overwhelming dominance of the United Kingdom as the primary market. Other countries had significantly lower sales contributions.
-###** RFM Analysis**
+### **Monthly Sales:** 
+A line plot of monthly sales showed clear seasonality. Sales were lower at the beginning of the year, stabilized in the middle, and peaked significantly in the last quarter, particularly in November. This suggests a strong holiday shopping effect.
+
+### **Product-wise Sales:**
+A horizontal bar chart of the top 5 products by sales revealed a low concentration of sales in the top products. The highest-selling product accounted for less than 2% of total sales, indicating a broad product catalog with sales spread across many items.
+
+### **Country-wise Sales:** A bar chart of the top 5 countries by sales highlighted the overwhelming dominance of the United Kingdom as the primary market. Other countries had significantly lower sales contributions.
+
+### RFM Analysis
 RFM metrics (Recency, Frequency, Monetary) were calculated for each customer.
-Recency was defined as the number of days since the customer's last purchase.
-Frequency was calculated as the number of unique invoices per customer.
-Monetary was calculated as the sum of total price per customer.
+- Recency - defined as the number of days since the customer's last purchase.
+- Frequency - the number of unique invoices per customer.
+- Monetary - the sum of total price per customer.
+
 RFM scores (1-4 scale) were assigned based on quantiles of the RFM metrics, using ranking to handle ties. Lower recency, higher frequency, and higher monetary values received higher scores.
 An RFM sum was calculated as the sum of the individual RFM scores. Customers with higher RFM sums represent the most valuable customers.
+
 ### **Churn Analysis**
 Churned customers were identified as those who had not made a purchase in the last 90 days.
 The distribution of days since last purchase for churned customers was visualized using a histogram and KDE plot.
 The total number of churned customers was calculated.
 
-### Restrictions
-Data limitations : Monthly trend analysis is based on one year of data only, multi-year data would be required for a more in-depth understanding of seasonalit.. 
-
 # Recommendations
 Based on the analysis conducted, the following recommendations can be proposed:
 
-Sales Trend : Develop targeted marketing campaigns to capitalize on the peak sales season in the last quarter.
-Country - wise sales : 
-Product Trend: nvestigate strategies to increase sales in underperforming markets.
-RFM analysis: Utilize RFM segments to tailor marketing efforts and offers to different customer groups.
+**Sales Trend :** Develop targeted marketing campaigns to capitalize on the peak sales season in the last quarter.
+**Product Trend:** investigate strategies to increase sales in underperforming markets.
 
-RFM and Customer Churn Analysis :
+**RFM and Customer Churn Analysis :**
 
-Healthy Value Distribution: Customer value tiers are nearly evenly split (Low: 35%, Medium: 29%, High: 29%), indicating diversified revenue streams rather than dangerous over-reliance on one segment.
-
-The substantial Low Value segment (1,504 customers) presents untapped potential for revenue growth through tier migration.
-
-Focus on migrating Low Value customers to Medium Value status.
-
-High Churn Concentration at Low Recency (0-30 Days)
+- Healthy Value Distribution: Customer value tiers are nearly evenly split (Low: 35%, Medium: 29%, High: 29%), indicating diversified revenue streams rather than dangerous over-reliance on one segment.
+- The substantial Low Value segment (1,504 customers) presents untapped potential for revenue growth through tier migration.
+- Focus on migrating Low Value customers to Medium Value status.
+- High Churn Concentration at Low Recency (0-30 Days)
 
 The density plot shows a sharp peak near 0-30 days since the last purchase. This indicates that customers who churn typically do so very soon after their most recent purchase, suggesting dissatisfaction with their purchase, poor onboarding, or lack of post-purchase engagement. Providing time-limited discounts (next purchase within 14 days) to encourage rapid repeat buys or launching  automated post-purchase surveys to address dissatisfaction. 
 
