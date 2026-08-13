@@ -101,7 +101,8 @@ A line plot of monthly sales showed clear seasonality. Sales were lower at the b
 ### **Product-wise Sales:**
 A horizontal bar chart of the top 5 products by sales revealed a low concentration of sales in the top products. The highest-selling product accounted for less than 2% of total sales, indicating a broad product catalog with sales spread across many items.
 
-### **Country-wise Sales:** A bar chart of the top 5 countries by sales highlighted the overwhelming dominance of the United Kingdom as the primary market. Other countries had significantly lower sales contributions.
+### **Country-wise Sales:** 
+A bar chart of the top 5 countries by sales highlighted the overwhelming dominance of the United Kingdom as the primary market. Other countries had significantly lower sales contributions.
 
 ### RFM Analysis
 RFM metrics (Recency, Frequency, Monetary) were calculated for each customer.
